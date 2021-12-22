@@ -1,9 +1,14 @@
 package tests;
 
+import com.codeborne.selenide.Configuration;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTests extends TestBase{
     HomePage homePage;
@@ -12,7 +17,7 @@ public class LoginTests extends TestBase{
     String password = "";
 
     @BeforeMethod
-    public void initTest(){
+    public void initPage(){
         homePage = new HomePage();
         loginPage = new LoginPage();
     }
