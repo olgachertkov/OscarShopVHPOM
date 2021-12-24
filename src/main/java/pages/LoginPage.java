@@ -1,8 +1,10 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
@@ -23,5 +25,30 @@ public class LoginPage {
 
     public void clickLogIn() {
         $("[name=\"login_submit\"]").click();
+    }
+
+    public void fillEmailRegForm(String email) {
+        $("#id_registration-email").setValue(email);
+    }
+
+    public void fillPasswordRegForm(String password) {
+        $("#id_registration-password1").setValue(password);
+    }
+
+    public void confurmPasswordRegForm(String password) {
+        $("#id_registration-password2").setValue(password);
+    }
+
+    public void clickRegister() {
+        $("[name=\"registration_submit\"]").click();
+    }
+
+    public void messageIsDisplayed(String s) {
+//        $(byText(s)).shouldBe(Condition.visible);
+        $(".alert strong").shouldBe(Condition.visible).shouldHave(Condition.text(s));
+    }
+
+    public void isItLoginPage() {
+        Selenide.title().equals("http://selenium1py.pythonanywhere.com/en-gb/accounts/login/");
     }
 }

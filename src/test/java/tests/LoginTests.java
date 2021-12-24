@@ -7,29 +7,42 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTests extends TestBase{
     HomePage homePage;
     LoginPage loginPage;
-    String email = "";
-    String password = "";
+    String email = "olga11@yandex.ru";
+    String password = "Qwe123123";
+    String emailInvalid = "olga@yandex.ru";
+    String passwordInvalid = "Qwe123";
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void initPage(){
         homePage = new HomePage();
         loginPage = new LoginPage();
     }
 
-    @Test
+    @Test(priority = 1, groups = "positive")
     public void loginPositiveTest(){
         homePage.clickOnLoginLink();
         loginPage.loginFormIsVisible();
         loginPage.fillEmail(email);
         loginPage.fillPassword(password);
         loginPage.clickLogIn();
-
-
+        homePage.isItHomePage();
+        homePage.messageIsDisplayed("Welcome back");
     }
+
+    @Test(priority = 2, groups = {"negative"}, enabled = false)
+    public void loginNegativeTest(){
+        homePage.clickOnLoginLink();
+        loginPage.loginFormIsVisible();
+        loginPage.fillEmail(email);
+        loginPage.fillPassword(passwordInvalid);
+        loginPage.clickLogIn();
+        loginPage.isItLoginPage();
+        loginPage.messageIsDisplayed("Oops! We found some errors");
+    }
+
+
 }

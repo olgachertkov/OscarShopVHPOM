@@ -8,16 +8,16 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase {
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void initTest(){
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         System.setProperty("selenide.browser", "Chrome");
         Configuration.browserSize = "1920x1080";
         open("http://selenium1py.pythonanywhere.com/en-gb/");
-        Configuration.timeout = 10000;
+        Configuration.timeout = 20000;
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void closeTest(){
         closeWebDriver();
     }
