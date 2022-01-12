@@ -1,11 +1,10 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import tests.util.DataProviders;
 
 
 public class LoginTests extends TestBase{
@@ -13,8 +12,8 @@ public class LoginTests extends TestBase{
     LoginPage loginPage;
     String email = "olga11@yandex.ru";
     String password = "Qwe123123";
-    String emailInvalid = "olga@yandex.ru";
-    String passwordInvalid = "Qwe123";
+//    String emailInvalid = "olga@yandex.ru";
+//    String passwordInvalid = "Qwe123";
 
     @BeforeMethod(alwaysRun = true)
     public void initPage(){
@@ -33,11 +32,13 @@ public class LoginTests extends TestBase{
         homePage.messageIsDisplayed("Welcome back");
     }
 
-    @Test(priority = 2, groups = {"negative"}, enabled = false)
-    public void loginNegativeTest(){
+    @Test(priority = 2, groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loginNegativeUsingFile")
+//    @Parameters({"emailInvalid", "passwordInvalid"})
+
+    public void loginNegativeTest(String emailInvalid, String passwordInvalid){
         homePage.clickOnLoginLink();
         loginPage.loginFormIsVisible();
-        loginPage.fillEmail(email);
+        loginPage.fillEmail(emailInvalid);
         loginPage.fillPassword(passwordInvalid);
         loginPage.clickLogIn();
         loginPage.isItLoginPage();
