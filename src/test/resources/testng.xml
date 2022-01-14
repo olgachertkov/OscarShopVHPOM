@@ -2,18 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5">
     <test name="Test1">
-        <parameter name="emailInvalid"  value="qwe123123@gmail.com" />
-        <parameter name="passwordInvalid"  value="123123" />
-<!--        <groups>-->
-<!--            <define name="negative"></define>-->
-<!--        </groups>-->
         <classes>
-            <class name="tests.LoginTests">
-                <methods>
-                    <include name="loginNegativeTest"/>
-                </methods>
-            </class>
-
+            <class name="tests.LoginTests"></class>
+            <class name="tests.RegisterTests"></class>
         </classes>
     </test>
 </suite>
