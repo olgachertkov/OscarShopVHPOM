@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class HomePage {
@@ -21,5 +22,14 @@ public class HomePage {
 
     public void isItHomePage() {
         Selenide.title().equals("http://selenium1py.pythonanywhere.com/en-gb/");
+    }
+
+    public void selectMenu(String value) {
+        $(byXpath("//a[contains(text(),'" + value + "')]")).click();
+
+    }
+
+    public void viewBasket() {
+        $(byText("View basket")).shouldBe(Condition.visible).click();
     }
 }
