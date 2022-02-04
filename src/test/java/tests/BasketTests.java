@@ -1,5 +1,8 @@
 package tests;
 
+import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,6 +18,7 @@ public class BasketTests extends TestBase {
     ProductPage productPage;
 
     @BeforeMethod(alwaysRun = true)
+    @Feature("Basket")
     public void initPage() {
         homePage = new HomePage();
         basketPage = new BasketPage();
@@ -23,8 +27,10 @@ public class BasketTests extends TestBase {
     }
 
     @Test
+    @Story("Name validation")
     public void nameValidation() {
         homePage.selectMenu("Books");
+        Selenide.screenshot("screen1");
         catalogePage.selectBookByIndex(0);
         productPage.productInformationIsDisplayed();
         String name = productPage.getName();

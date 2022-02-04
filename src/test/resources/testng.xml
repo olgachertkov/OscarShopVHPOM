@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Tests" verbose="5">
+<suite name="Tests" verbose="5" thread-count="1" parallel="classes">
     <test name="Test1">
-        <classes>
-            <class name="tests.LoginTests"></class>
-            <class name="tests.RegisterTests"></class>
-        </classes>
+        <packages>
+            <package name="tests.*"></package>
+        </packages>
     </test>
 </suite>

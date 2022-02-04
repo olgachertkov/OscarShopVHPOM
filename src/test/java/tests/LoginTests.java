@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -11,20 +12,21 @@ import tests.util.DataProviders;
 public class LoginTests extends TestBase{
     HomePage homePage;
     LoginPage loginPage;
-//    String email = "olga11@yandex.ru";
-//    String password = "Qwe123123";
+    String email = "olga11@yandex.ru";
+    String password = "Qwe123123";
 //    String emailInvalid = "olga@yandex.ru";
 //    String passwordInvalid = "Qwe123";
 
     @BeforeMethod(alwaysRun = true)
+    @Feature("Login")
     public void initPage(){
         homePage = new HomePage();
         loginPage = new LoginPage();
     }
 
     @Test(priority = 1, groups = "positive")
-    @Parameters({"email", "password"})
-    public void loginPositiveTest(String email, String password){
+//    @Parameters({"email", "password"})
+    public void loginPositiveTest(/*String email, String password*/){
         homePage.clickOnLoginLink();
         loginPage.loginFormIsVisible();
         loginPage.fillEmail(email);

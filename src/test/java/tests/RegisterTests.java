@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -14,6 +15,7 @@ public class RegisterTests extends TestBase{
     String password = "Qwe123123";
 
     @BeforeMethod
+    @Feature("Registration")
     public void initPage(){
         homePage = new HomePage();
         loginPage = new LoginPage();
