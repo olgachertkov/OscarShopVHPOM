@@ -27,7 +27,7 @@ public class RegisterTests extends TestBase{
         loginPage.loginFormIsVisible();
         loginPage.fillEmailRegForm(email);
         loginPage.fillPasswordRegForm(password);
-        loginPage.confurmPasswordRegForm(password);
+        loginPage.confirmPasswordRegForm(password);
         loginPage.clickRegister();
         homePage.isItHomePage();
         homePage.messageIsDisplayed("Thanks for registering!");
